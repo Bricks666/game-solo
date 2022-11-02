@@ -14,7 +14,7 @@ export const globalStyles = css`
 		--max-width: 1440;
 		--min-width: 320;
 		--base-width: 980;
-		--current-width-px: clamp(var(--max-width), 100vw, var(--min-width));
+		--current-width-px: calc(var(--current-width) * 1px);
 		--scale-factor: calc(var(--current-width) / var(--base-width));
 	}
 
@@ -37,6 +37,16 @@ export const globalStyles = css`
 		color: var(--base-color);
 	}
 
+	fieldset,
+	button {
+		border: none;
+		outline: none;
+	}
+
+	button {
+		cursor: pointer;
+	}
+
 	.visibility-hidden {
 		position: absolute;
 		top: -999999px;
@@ -49,13 +59,15 @@ export const globalStyles = css`
 		overflow: hidden;
 	}
 
-	fieldset,
-	button {
-		border: none;
-		outline: none;
+	.page-wrapper {
+		min-height: 100vh;
+
+		background-image: var(--page-wrapper-bg);
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 
-	button {
-		cursor: pointer;
+	#__next {
+		min-height: 100vh;
 	}
 `;

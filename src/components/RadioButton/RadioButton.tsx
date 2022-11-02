@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import * as React from 'react';
 import {
 	FieldValues,
@@ -39,7 +40,6 @@ export const RadioButton = React.memo(function RadioButton<
 		shouldUnregister,
 	});
 	const checked = field.value == value;
-	console.log(field, value, checked, name, label);
 	const id = React.useId();
 	return (
 		<div className={className}>

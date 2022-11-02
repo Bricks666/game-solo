@@ -3,3 +3,8 @@ export interface StartGameParams {
 	readonly sort: 1 | -1;
 	readonly values: number | string;
 }
+
+export interface ItemModel {
+	readonly number: number;
+	readonly image: string;
+}

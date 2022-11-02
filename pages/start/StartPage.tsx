@@ -6,7 +6,7 @@ import { Container } from '@/components/Container';
 
 const StartPage: NextPage = () => {
 	return (
-		<StyledWrapper>
+		<StyledWrapper className='page-wrapper'>
 			<StyledContainer>
 				<StartForm />
 			</StyledContainer>
@@ -15,16 +15,12 @@ const StartPage: NextPage = () => {
 };
 
 const StyledWrapper = styled.div`
+	--page-wrapper-bg: url('/assets/images/start-bg.webp');
+
 	position: relative;
 	z-index: 0;
 
-	min-height: 100vh;
-
 	padding-top: calc(20px * var(--scale-factor));
-
-	background-image: url('/assets/images/start-bg.webp');
-	background-repeat: no-repeat;
-	background-size: cover;
 `;
 
 const StyledContainer = styled(Container)`
