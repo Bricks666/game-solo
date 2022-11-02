@@ -1,9 +1,17 @@
 import styled from '@emotion/styled';
 import { BaseButton } from '../BaseButton';
+import { BorderGradient } from '../BorderGradient';
 
-export const StyledWrapper = styled.form`
-	position: relative;
+export const StyledWrapper = styled(BorderGradient)`
+	--border-gradient-border-width: 20px;
+	--border-gradient-border-radius: 40px;
+	--border-gradient-border-image: linear-gradient(
+		var(--third-color-80) 0,
+		var(--third-color-100) 100%
+	);
+`;
 
+export const StyledForm = styled.form`
 	display: grid;
 	gap: calc(50px * var(--scale-factor));
 	justify-items: center;
@@ -11,27 +19,8 @@ export const StyledWrapper = styled.form`
 	padding: calc(50px * var(--scale-factor)) calc(80px * var(--scale-factor));
 
 	background-color: var(--base-contract-color);
-	background-clip: padding-box;
 
-	border: calc(20px * var(--scale-factor)) solid transparent;
-	border-radius: calc(40px * var(--scale-factor));
-
-	::before {
-		content: '';
-
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-
-		margin: calc(-20px * var(--scale-factor));
-
-		background-image: linear-gradient(
-			var(--third-color-80) 0,
-			var(--third-color-100) 100%
-		);
-
-		border-radius: inherit;
-	}
+	border-radius: inherit;
 `;
 
 export const StyledRadioContainer = styled.fieldset`
@@ -45,7 +34,7 @@ export const StyledRadioContainer = styled.fieldset`
 `;
 
 export const StyledButton = styled(BaseButton)`
-	background-color: var(--primary-color);
+	background-color: var(--primary-color-100);
 
 	color: var(--base-contract-color);
 `;

@@ -2,13 +2,20 @@ import { css } from '@emotion/react';
 
 export const globalStyles = css`
 	:root {
-		--primary-color: #38df7a;
+		--primary-color-100: #38df7a;
+		--primary-color-95: rgba(30, 129, 58, 1);
+		--primary-color-90: rgba(43, 214, 0, 1);
+
 		--secondary-color: #ffd748;
+
 		--third-color-100: #101f32;
 		--third-color-90: #104987;
 		--third-color-80: #7f75f0;
+		--third-color-70: #5f40a1;
+
 		--base-color: #423f45;
 		--base-contract-color: #ffffff;
+
 		--shadow-color: rgba(0, 0, 0, 0.4);
 
 		--max-width: 1440;

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 interface StyledWrapperProps {
 	readonly background?: string;
+	readonly selected: boolean;
 }
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
@@ -9,8 +10,8 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
 	align-items: center;
 	justify-content: center;
 
-	width: var(--item-size);
-	height: var(--item-size);
+	width: clamp(40px, var(--item-size), 200px);
+	height: clamp(40px, var(--item-size), 200px);
 
 	border-radius: 50%;
 
@@ -18,6 +19,14 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
+
+	${(props) => (props.selected ? 'transform: translateY(-20%);' : '')}
+	${(props) =>
+		props.selected
+			? 'filter: drop-shadow(0 8px 8px var(--secondary-color));'
+			: ''}
+
+	transition: transform 200ms ease-in-out, filter 200ms ease-in-out;
 `;
 
 export const StyledText = styled.p`

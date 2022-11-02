@@ -33,7 +33,7 @@ export const Items: React.FC<ItemsProps> = React.memo(function Items(props) {
 	return (
 		<StyledWrapper className={className}>
 			{items.map((item) => (
-				<StyledItem {...item} key={item.number} />
+				<StyledItem {...item} key={item.number} selected={false} />
 			))}
 		</StyledWrapper>
 	);

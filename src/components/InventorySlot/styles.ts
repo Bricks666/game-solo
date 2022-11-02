@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const StyledWrapper = styled.div`
-	width: var(--item-size);
-	height: var(--item-size);
+	width: clamp(40px, var(--item-size), 200px);
+	height: clamp(40px, var(--item-size), 200px);
 
 	border-radius: 50%;
 

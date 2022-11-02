@@ -5,7 +5,12 @@ import { StartGameParams } from '@/models/game';
 import { ChooseControl } from '../ChooseControl';
 import { RadioButton } from '../RadioButton';
 import { countOptions, valueOptions } from './data';
-import { StyledButton, StyledRadioContainer, StyledWrapper } from './styles';
+import {
+	StyledButton,
+	StyledRadioContainer,
+	StyledForm,
+	StyledWrapper,
+} from './styles';
 
 export interface StartFormProps extends CommonProps {}
 
@@ -25,34 +30,36 @@ export const StartForm: React.FC<StartFormProps> = React.memo(
 			reset();
 		};
 		return (
-			<StyledWrapper className={className} onSubmit={handleSubmit(onSubmit)}>
-				<ChooseControl
-					label='Кол-во предметов'
-					name='count'
-					control={control as any}
-					options={countOptions}
-				/>
-				<ChooseControl
-					name='values'
-					control={control as any}
-					label='Значения'
-					options={valueOptions}
-				/>
-				<StyledRadioContainer>
-					<RadioButton
+			<StyledWrapper className={className}>
+				<StyledForm onSubmit={handleSubmit(onSubmit)}>
+					<ChooseControl
+						label='Кол-во предметов'
+						name='count'
 						control={control as any}
-						name='sort'
-						label='По возрастанию'
-						value={1}
+						options={countOptions}
 					/>
-					<RadioButton
-						name='sort'
-						label='По убыванию'
+					<ChooseControl
+						name='values'
 						control={control as any}
-						value={-1}
+						label='Значения'
+						options={valueOptions}
 					/>
-				</StyledRadioContainer>
-				<StyledButton type='submit'>Играть</StyledButton>
+					<StyledRadioContainer>
+						<RadioButton
+							control={control as any}
+							name='sort'
+							label='По возрастанию'
+							value={1}
+						/>
+						<RadioButton
+							name='sort'
+							label='По убыванию'
+							control={control as any}
+							value={-1}
+						/>
+					</StyledRadioContainer>
+					<StyledButton type='submit'>Играть</StyledButton>
+				</StyledForm>
 			</StyledWrapper>
 		);
 	}

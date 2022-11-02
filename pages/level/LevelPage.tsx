@@ -7,7 +7,7 @@ import { BottomBar } from '@/components/BottomBar';
 import { WinScreen } from '@/components/WinScreen';
 
 const LevelPage: NextPage = () => {
-	const isWon = false;
+	const isWon = true;
 	return (
 		<StyledWrapper className='page-wrapper'>
 			<StyledContainer>
@@ -28,7 +28,7 @@ const StyledContainer = styled(Container)`
 	grid-template-rows: 1fr max-content;
 	gap: calc(40px * var(--scale-factor));
 
-	padding: calc(45px * var(--scale-factor));
+	padding: min(calc(45px * var(--scale-factor)), 60px);
 
 	min-height: 100vh;
 `;

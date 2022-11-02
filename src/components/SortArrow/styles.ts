@@ -11,11 +11,6 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
 
 	${(props) => (props.invert ? 'margin-left: auto;' : 'margin-right: auto;')}
 
-	font-size: calc(36px * var(--scale-factor));
-	color: var(--base-contract-color);
-	line-height: 1.2em;
-	-webkit-text-stroke: calc(1.5px * var(--scale-factor)) var(--base-color);
-
 	::after {
 		content: '';
 
@@ -37,4 +32,11 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
 
 		${(props) => (props.invert ? 'transform: rotate(180deg);' : '')}
 	}
+`;
+
+export const StyledText = styled.p`
+	font-size: calc(36px * var(--scale-factor));
+	color: var(--base-contract-color);
+	line-height: 1.2em;
+	-webkit-text-stroke: calc(1.5px * var(--scale-factor)) var(--base-color);
 `;

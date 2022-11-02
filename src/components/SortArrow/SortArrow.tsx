@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CommonProps } from '@/interfaces';
-import { StyledWrapper } from './styles';
+import { StyledText, StyledWrapper } from './styles';
 
 export interface SortArrowProps extends CommonProps {}
 
@@ -11,7 +11,7 @@ export const SortArrow: React.FC<SortArrowProps> = React.memo(
 		const label = sort === -1 ? 'По убыванию' : 'По возрастанию';
 		return (
 			<StyledWrapper className={className} invert={sort === -1}>
-				{label}
+				<StyledText>{label}</StyledText>
 			</StyledWrapper>
 		);
 	}
