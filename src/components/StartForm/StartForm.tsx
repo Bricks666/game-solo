@@ -1,91 +1,58 @@
 import * as React from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { CommonProps } from '@/interfaces';
-import { StyledRadioContainer, StyledWrapper } from './styles';
-import { ChooseControl, ChooseOption } from '../ChooseControl';
+import { StartGameParams } from '@/models/game';
+import { ChooseControl } from '../ChooseControl';
 import { RadioButton } from '../RadioButton';
-import { BaseButton } from '../BaseButton';
+import { countOptions, valueOptions } from './data';
+import { StyledButton, StyledRadioContainer, StyledWrapper } from './styles';
 
 export interface StartFormProps extends CommonProps {}
-
-const countOptions: ChooseOption<number>[] = [
-	{
-		label: '2',
-		value: 2,
-	},
-	{
-		label: '3',
-		value: 3,
-	},
-	{
-		label: '4',
-		value: 4,
-	},
-	{
-		label: '5',
-		value: 5,
-	},
-];
-
-const valueOptions: ChooseOption<number | string>[] = [
-	{
-		label: 'A',
-		value: 'A',
-	},
-	{
-		label: '9',
-		value: '9',
-	},
-	{
-		label: '19',
-		value: '19',
-	},
-	{
-		label: '59',
-		value: '59',
-	},
-	{
-		label: '99',
-		value: '99',
-	},
-	{
-		label: '999',
-		value: '999',
-	},
-];
 
 export const StartForm: React.FC<StartFormProps> = React.memo(
 	function StartForm(props) {
 		const { className } = props;
-		const [count, setCount] = React.useState<number>(2);
-		const [value, setValue] = React.useState<number | string>('A');
-		const onCountChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-			setCount(Number(evt.target.value) as unknown as number);
-		};
 
-		const onCountValue: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-			setValue(evt.target.value);
+		const { control, handleSubmit, reset } = useForm<StartGameParams>({
+			defaultValues: {
+				count: 2,
+				sort: 1,
+				values: 'A',
+			},
+		});
+		const onSubmit: SubmitHandler<StartGameParams> = (params) => {
+			console.log(params);
+			reset();
 		};
 		return (
-			<StyledWrapper className={className}>
+			<StyledWrapper className={className} onSubmit={handleSubmit(onSubmit)}>
 				<ChooseControl
 					label='Кол-во предметов'
-					value={count}
-					options={countOptions}
-					onChange={onCountChange}
 					name='count'
+					control={control as any}
+					options={countOptions}
 				/>
 				<ChooseControl
+					name='values'
+					control={control as any}
 					label='Значения'
-					value={value}
 					options={valueOptions}
-					onChange={onCountValue}
-					name='value'
 				/>
 				<StyledRadioContainer>
-					<RadioButton label='По возрастанию' name='sort' />
-					<RadioButton label='По убыванию' name='sort' />
+					<RadioButton
+						control={control as any}
+						name='sort'
+						label='По возрастанию'
+						value={1}
+					/>
+					<RadioButton
+						name='sort'
+						label='По убыванию'
+						control={control as any}
+						value={-1}
+					/>
 				</StyledRadioContainer>
-				<BaseButton>Играть</BaseButton>
+				<StyledButton type='submit'>Играть</StyledButton>
 			</StyledWrapper>
 		);
 	}

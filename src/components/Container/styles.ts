@@ -2,9 +2,8 @@ import styled from '@emotion/styled';
 
 export const StyledWrapper = styled.div`
 	--container-margin: 14.25vw;
-	--container-width: min(1920px, 100vw);
 
-	max-width: var(--container-width);
+	max-width: var(--current-width-px);
 
 	margin: 0 var(--container-margin);
 

@@ -1,9 +1,7 @@
 import { css } from '@emotion/react';
 
 export const globalStyles = css`
-	:root,
-	:root::after,
-	:root::before {
+	:root {
 		--primary-color: #38df7a;
 		--secondary-color: #ffd748;
 		--third-color-100: #101f32;
@@ -11,6 +9,13 @@ export const globalStyles = css`
 		--third-color-80: #7f75f0;
 		--base-color: #423f45;
 		--base-contract-color: #ffffff;
+		--shadow-color: rgba(0, 0, 0, 0.4);
+
+		--max-width: 1440;
+		--min-width: 320;
+		--base-width: 980;
+		--current-width-px: clamp(var(--max-width), 100vw, var(--min-width));
+		--scale-factor: calc(var(--current-width) / var(--base-width));
 	}
 
 	*,
@@ -24,12 +29,10 @@ export const globalStyles = css`
 
 	body,
 	html {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		min-height: 100vh;
 
-		height: 100vh;
-
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+			Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 		line-height: 1.2em;
 		color: var(--base-color);
 	}
@@ -50,5 +53,9 @@ export const globalStyles = css`
 	button {
 		border: none;
 		outline: none;
+	}
+
+	button {
+		cursor: pointer;
 	}
 `;

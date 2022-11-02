@@ -1,4 +1,9 @@
 import * as React from 'react';
+import {
+	UseControllerProps,
+	FieldValues,
+	useController,
+} from 'react-hook-form';
 import { CommonProps } from '@/interfaces';
 import {
 	StyledControlContainer,
@@ -11,21 +16,42 @@ import {
 } from './styles';
 import { ChooseOption } from './types';
 
-export interface ChooseControlProps<V> extends CommonProps {
+export interface ChooseControlProps<V, Fields extends FieldValues>
+	extends CommonProps,
+		UseControllerProps<Fields>,
+		Omit<
+			React.InputHTMLAttributes<HTMLInputElement>,
+			keyof UseControllerProps
+		> {
 	readonly options: ChooseOption<V>[];
-	readonly value: V;
-	readonly onChange: React.ChangeEventHandler<HTMLInputElement>;
-	readonly name: string;
 	readonly label: string;
 }
 
-export const ChooseControl = React.memo(function ChooseControl<V>(
-	props: ChooseControlProps<V>
-) {
-	const { className, options, onChange, name, value, label } = props;
+export const ChooseControl = React.memo(function ChooseControl<
+	V,
+	Fields extends FieldValues
+>(props: ChooseControlProps<V, Fields>) {
+	const {
+		className,
+		options,
+		label,
+		name,
+		control,
+		defaultValue,
+		rules,
+		shouldUnregister,
+		...rest
+	} = props;
+	const { field } = useController({
+		name,
+		control,
+		defaultValue,
+		rules,
+		shouldUnregister,
+	});
 	const id = React.useId();
 	const activeElementIndex = options.findIndex(
-		(option) => option.value === value
+		(option) => option.value == field.value
 	);
 	return (
 		<StyledWrapper className={className}>
@@ -34,16 +60,15 @@ export const ChooseControl = React.memo(function ChooseControl<V>(
 				{options.map((option) => {
 					const id = `point-${option.label}-${option.value}`;
 					return (
-						<StyledPointContainer>
+						<StyledPointContainer key={option.value as string}>
 							<StyledPointLabel htmlFor={id}>{option.label}</StyledPointLabel>
 							<StyledPoint
+								{...field}
+								{...rest}
 								type='radio'
-								name={name}
-								onChange={onChange}
 								value={option.value as string}
-								checked={value === option.value}
+								checked={field.value === option.value}
 								id={id}
-								key={option.value as string}
 							/>
 						</StyledPointContainer>
 					);
