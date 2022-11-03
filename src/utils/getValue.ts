@@ -1,4 +1,4 @@
-import { ItemModel } from '@/models/game';
+import { ItemModel } from '@/models/items';
 
 export const getValue = (item: ItemModel): number => {
 	const { value } = item;

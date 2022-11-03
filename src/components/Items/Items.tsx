@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import * as React from 'react';
 import { useStore, useEvent } from 'effector-react';
-import { $field, onItemSelect } from '@/models/game';
+import { $field, onItemSelect } from '@/models/items';
 import { CommonProps } from '@/interfaces';
 import { StyledItem, StyledWrapper } from './styles';
 

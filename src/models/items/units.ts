@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { combine, createDomain } from 'effector';
 import { arrayIsEqual, extractId, getValue } from '@/utils';
-import { ItemModel, Slot, GameConfig } from './types';
+import {
+	ItemModel,
+	Slot,
+	GenerateSlotsParams,
+	GenerateItemsResponse,
+	ItemToSlotParams,
+} from './types';
+import { $gameConfig, GameConfig } from '../config';
 
-export const GameDomain = createDomain('GameDomain');
+export const ItemsDomain = createDomain();
 
-export const startLevelGame = GameDomain.event();
-export const $gameConfig = GameDomain.store<GameConfig | null>(null);
-export const $hasGameConfig = $gameConfig.map(Boolean);
-export const setGameConfig = GameDomain.event<GameConfig>();
-
-export const $selectedItemId = GameDomain.store<number | null>(null);
-export const $items = GameDomain.store<ItemModel[]>([]);
+export const $selectedItemId = ItemsDomain.store<number | null>(null);
+export const $items = ItemsDomain.store<ItemModel[]>([]);
 
 export const $field = combine(
 	$items,
@@ -23,7 +25,8 @@ export const $field = combine(
 		}));
 	}
 );
-export const $slots = GameDomain.store<Slot[]>([]);
+export const $slots = ItemsDomain.store<Slot[]>([]);
+export const itemToSlot = ItemsDomain.event<ItemToSlotParams>();
 
 export const $inventory = combine(
 	$slots,
@@ -41,22 +44,19 @@ export const $inventory = combine(
 	}
 );
 
-export const setItemsAndSlots = GameDomain.event<{
+export const setItemsAndSlots = ItemsDomain.event<{
 	items: ItemModel[];
 	slots: Slot[];
 }>();
 
-export const createSlotsFx = GameDomain.effect<
-	{
-		minItem: ItemModel;
-		count: number;
-	},
+export const generateSlotsFx = ItemsDomain.effect<
+	GenerateSlotsParams,
 	Slot[]
 >();
 
-export const createItemsFx = GameDomain.effect<
+export const generateItemsFx = ItemsDomain.effect<
 	GameConfig,
-	ItemModel[],
+	GenerateItemsResponse,
 	Error
 >();
 
@@ -73,7 +73,7 @@ export const $isWin = combine($gameConfig, $slots, (config, slots) => {
 	return arrayIsEqual(values, sortedValues);
 });
 
-export const onItemSelect = GameDomain.event<
+export const onItemSelect = ItemsDomain.event<
 	| React.MouseEvent<HTMLElement>
 	| React.TouchEvent<HTMLElement>
 	| React.DragEvent<HTMLElement>
@@ -81,5 +81,5 @@ export const onItemSelect = GameDomain.event<
 
 export const itemSelected = onItemSelect.map(extractId);
 
-export const onSlotSelect = GameDomain.event<React.MouseEvent<HTMLElement>>();
+export const onSlotSelect = ItemsDomain.event<React.MouseEvent<HTMLElement>>();
 export const slotSelected = onSlotSelect.map(extractId);

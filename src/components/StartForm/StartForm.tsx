@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEvent } from 'effector-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CommonProps } from '@/interfaces';
-import { GameConfig, setGameConfig } from '@/models/game';
+import { GameConfig, setGameConfig } from '@/models/config';
 import { ChooseControl } from '../ChooseControl';
 import { RadioButton } from '../RadioButton';
 import { countOptions, valueOptions } from './data';
@@ -25,7 +25,7 @@ export const StartForm: React.FC<StartFormProps> = React.memo(
 			defaultValues: {
 				count: 2,
 				sort: 1,
-				values: 'A',
+				valueType: 'A',
 			},
 		});
 		const onSubmit: SubmitHandler<GameConfig> = (params) => {
@@ -42,7 +42,7 @@ export const StartForm: React.FC<StartFormProps> = React.memo(
 						options={countOptions}
 					/>
 					<ChooseControl
-						name='values'
+						name='valueType'
 						control={control as any}
 						label='Значения'
 						options={valueOptions}

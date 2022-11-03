@@ -3,12 +3,13 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useStore } from 'effector-react';
 import styled from '@emotion/styled';
-import { $hasGameConfig, $isWin, startLevelGame } from '@/models/game';
+import { $hasGameConfig, startLevelGame } from '@/models/config';
+import { $isWin } from '@/models/items';
+import { createGIP } from '@/models/shared';
 import { Container } from '@/components/Container';
 import { GameField } from '@/components/GameField';
 import { BottomBar } from '@/components/BottomBar';
 import { WinScreen } from '@/components/WinScreen';
-import { createGIP } from '@/models/shared';
 
 const LevelPage: NextPage = () => {
 	const isWon = useStore($isWin);

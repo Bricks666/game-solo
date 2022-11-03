@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CommonProps } from '@/interfaces';
 import { StyledText, StyledWrapper } from './styles';
-import { ItemModel } from '@/models/game';
+import { ItemModel } from '@/models/items';
 
 export interface ItemProps extends CommonProps, ItemModel {
 	readonly selected: boolean;
@@ -14,7 +14,15 @@ export interface ItemProps extends CommonProps, ItemModel {
 }
 
 export const Item: React.FC<ItemProps> = React.memo(function Item(props) {
-	const { className, value: number, image, selected, id, onSelect } = props;
+	const {
+		className,
+		value: number,
+		image,
+		selected,
+		id,
+		onSelect,
+		slotId,
+	} = props;
 	return (
 		<StyledWrapper
 			className={className}
@@ -22,7 +30,8 @@ export const Item: React.FC<ItemProps> = React.memo(function Item(props) {
 			selected={selected}
 			onClick={onSelect}
 			onTouchStart={onSelect}
-			data-id={id}>
+			data-id={id}
+			data-slot-id={slotId}>
 			<StyledText>{number}</StyledText>
 		</StyledWrapper>
 	);

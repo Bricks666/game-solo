@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useStore } from 'effector-react';
+import { $gameConfig } from '@/models/config';
 import { CommonProps } from '@/interfaces';
 import { StyledWrapper } from './styles';
 import { Inventory } from '../Inventory';
@@ -9,10 +11,13 @@ export interface BottomBarProps extends CommonProps {}
 export const BottomBar: React.FC<BottomBarProps> = React.memo(
 	function BottomBar(props) {
 		const { className } = props;
+		const config = useStore($gameConfig);
+		const isDescSort = config?.sort === -1;
+
 		return (
 			<StyledWrapper className={className}>
-				<SortArrow />
-				<Inventory />
+				<SortArrow invert={isDescSort} />
+				<Inventory invert={isDescSort} />
 			</StyledWrapper>
 		);
 	}

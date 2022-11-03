@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import { BorderGradient } from '../BorderGradient';
 import { Item } from '../Item';
 
-export const StyledWrapper = styled(BorderGradient)`
+interface StyledWrapperProps {
+	readonly invert: boolean;
+}
+
+export const StyledWrapper = styled(BorderGradient)<StyledWrapperProps>`
 	--item-size: calc(130px * var(--scale-factor));
 	--border-gradient-border-width: 15px;
 	--border-gradient-border-radius: 50px;
@@ -15,6 +19,7 @@ export const StyledWrapper = styled(BorderGradient)`
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	${(props) => (props.invert ? 'flex-direction: row-reverse;' : '')}
 	gap: calc(4px * var(--scale-factor));
 
 	width: 100%;

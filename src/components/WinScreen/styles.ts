@@ -16,22 +16,14 @@ export const StyledWrapper = styled(BorderGradient)`
 		rgba(141, 103, 223, 0) 100%
 	);
 
-	display: grid;
-	justify-items: center;
-	gap: calc(22px * var(--scale-factor));
-
-	padding: calc(25px * var(--scale-factor)) calc(70px * var(--scale-factor));
-
 	background-color: var(--base-contract-color);
-
-	overflow: visible;
 
 	::after {
 		content: '';
 
 		position: absolute;
 		inset: -10%;
-		z-index: 1;
+		z-index: 0;
 
 		background-image: url('/assets/images/star.webp'),
 			url('/assets/images/star.webp'), url('/assets/images/star.webp'),
@@ -43,6 +35,17 @@ export const StyledWrapper = styled(BorderGradient)`
 			calc(160px * var(--scale-factor));
 		background-repeat: no-repeat;
 	}
+`;
+
+export const StyledInnerWrapper = styled.div`
+	position: relative;
+	z-index: 1;
+
+	display: grid;
+	justify-items: center;
+	gap: calc(22px * var(--scale-factor));
+
+	padding: calc(25px * var(--scale-factor)) calc(70px * var(--scale-factor));
 `;
 
 export const StyledTitle = styled.h2`
@@ -65,6 +68,8 @@ export const StyledMessage = styled.p`
 `;
 
 export const StyledButton = styled(BaseButton)`
+	position: relative;
+
 	margin-top: calc(50px * var(--scale-factor));
 
 	background-color: var(--primary-color-90);
