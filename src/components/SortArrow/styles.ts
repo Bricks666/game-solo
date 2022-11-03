@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import styled from '@emotion/styled';
 
 interface StyledWrapperProps {
