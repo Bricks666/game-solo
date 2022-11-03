@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useStore } from 'effector-react';
+import { useStore, useEvent } from 'effector-react';
 import { CommonProps } from '@/interfaces';
-import { $slots } from '@/models/game';
+import { $inventory, onItemSelect, onSlotSelect } from '@/models/game';
 import { InventorySlot } from '../InventorySlot';
 import { StyledItem, StyledWrapper } from './styles';
 
@@ -10,15 +10,20 @@ export interface InventoryProps extends CommonProps {}
 export const Inventory: React.FC<InventoryProps> = React.memo(
 	function Inventory(props) {
 		const { className } = props;
-		const slots = useStore($slots);
-		console.log(slots);
+		const slots = useStore($inventory);
+		const onSelectSlot = useEvent(onSlotSelect);
+		const onSelectItem = useEvent(onItemSelect);
 		return (
 			<StyledWrapper className={className}>
-				{slots.map((slot, i) => {
+				{slots.map((slot) => {
 					const child = slot.item ? (
-						<StyledItem {...slot.item} selected={false} />
+						<StyledItem {...slot.item} onSelect={onSelectItem} />
 					) : null;
-					return <InventorySlot key={i}>{child}</InventorySlot>;
+					return (
+						<InventorySlot id={slot.id} onSelect={onSelectSlot} key={slot.id}>
+							{child}
+						</InventorySlot>
+					);
 				})}
 			</StyledWrapper>
 		);

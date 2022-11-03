@@ -27,6 +27,8 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
 			: ''}
 
 	transition: transform 200ms ease-in-out, filter 200ms ease-in-out;
+
+	cursor: pointer;
 `;
 
 export const StyledText = styled.p`

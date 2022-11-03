@@ -8,10 +8,12 @@ export interface GameConfig {
 }
 
 export interface ItemModel {
+	readonly id: number;
 	readonly value: number | string;
 	readonly image: string;
 }
 
 export interface Slot {
+	readonly id: number;
 	readonly item: ItemModel | null;
 }

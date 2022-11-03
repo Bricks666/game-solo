@@ -7,4 +7,6 @@ export const StyledWrapper = styled.div`
 	border-radius: 50%;
 
 	box-shadow: inset 0px 4px 25px rgba(0, 0, 0, 0.25);
+
+	cursor: pointer;
 `;
