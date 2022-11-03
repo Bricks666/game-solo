@@ -7,7 +7,7 @@ import { BottomBar } from '@/components/BottomBar';
 import { WinScreen } from '@/components/WinScreen';
 
 const LevelPage: NextPage = () => {
-	const isWon = true;
+	const isWon = false;
 	return (
 		<StyledWrapper className='page-wrapper'>
 			<StyledContainer>

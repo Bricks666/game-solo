@@ -13,12 +13,12 @@ export const StyledWrapper = styled.div`
 export const StyledItem = styled(Item)`
 	--item-size: calc(156px * var(--scale-factor));
 
-	:nth-child(odd) {
+	:nth-of-type(odd) {
 		align-self: end;
 	}
 
-	:first-child,
-	:last-child {
+	:first-of-type,
+	:last-of-type {
 		align-self: center;
 	}
 `;

@@ -1,11 +1,10 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useWidth = (): number => {
 	const [width, setWidth] = useState<number>(320);
 
 	useEffect(() => {
 		const onResize = () => {
-			console.log(window.innerWidth);
 			setWidth(window.innerWidth);
 		};
 
@@ -16,7 +15,7 @@ export const useWidth = (): number => {
 		};
 	}, []);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		setWidth(window.innerWidth);
 	}, []);
 
