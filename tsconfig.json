@@ -16,7 +16,9 @@
 		"incremental": true,
 		"baseUrl": "src",
 		"paths": {
-			"@/*": ["*"]
+			"@/*": ["*"],
+			"nextjs-effector": ["./nextjs-effector"],
+			"nextjs-effector/*": ["./nextjs-effector/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

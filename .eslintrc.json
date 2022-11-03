@@ -91,5 +91,11 @@
 		"@typescript-eslint/no-unused-vars": ["error"],
 		"@typescript-eslint/no-empty-interface": ["off"]
 	},
-	"ignorePatterns": ["templates/**/*", "*.css.d.ts", "configs/*"]
+	"ignorePatterns": [
+		"templates/**/*",
+		"*.css.d.ts",
+		"configs/*",
+		"*.config.*",
+		"nextjs-effector"
+	]
 }

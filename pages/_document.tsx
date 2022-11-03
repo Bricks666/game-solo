@@ -8,7 +8,7 @@ import Document, {
 } from 'next/document';
 import { renderStatic } from '@/utils';
 
-export default class AppDocument extends Document {
+class AppDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext) {
 		const page = await ctx.renderPage();
 		const { css, ids } = await renderStatic(page.html);
@@ -39,3 +39,5 @@ export default class AppDocument extends Document {
 		);
 	}
 }
+
+export default AppDocument;

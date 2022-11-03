@@ -1,13 +1,24 @@
 import * as React from 'react';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useStore } from 'effector-react';
 import styled from '@emotion/styled';
+import { $hasGameConfig, $isWin, startLevelGame } from '@/models/game';
 import { Container } from '@/components/Container';
 import { GameField } from '@/components/GameField';
 import { BottomBar } from '@/components/BottomBar';
 import { WinScreen } from '@/components/WinScreen';
+import { createGIP } from '@/models/shared';
 
 const LevelPage: NextPage = () => {
-	const isWon = false;
+	const isWon = useStore($isWin);
+	const hasConfig = useStore($hasGameConfig);
+	const { replace } = useRouter();
+	React.useEffect(() => {
+		if (!hasConfig) {
+			replace('/start');
+		}
+	}, [hasConfig]);
 	return (
 		<StyledWrapper className='page-wrapper'>
 			<StyledContainer>
@@ -18,6 +29,10 @@ const LevelPage: NextPage = () => {
 		</StyledWrapper>
 	);
 };
+
+LevelPage.getInitialProps = createGIP({
+	pageEvent: startLevelGame,
+});
 
 const StyledWrapper = styled.div`
 	--page-wrapper-bg: url('/assets/images/candies/candy-field.webp');

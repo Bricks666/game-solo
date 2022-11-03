@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
+import { useEvent } from 'effector-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CommonProps } from '@/interfaces';
-import { StartGameParams } from '@/models/game';
+import { GameConfig, setGameConfig } from '@/models/game';
 import { ChooseControl } from '../ChooseControl';
 import { RadioButton } from '../RadioButton';
 import { countOptions, valueOptions } from './data';
@@ -17,17 +19,18 @@ export interface StartFormProps extends CommonProps {}
 export const StartForm: React.FC<StartFormProps> = React.memo(
 	function StartForm(props) {
 		const { className } = props;
-
-		const { control, handleSubmit, reset } = useForm<StartGameParams>({
+		const setGameConfigEvent = useEvent(setGameConfig);
+		const { push } = useRouter();
+		const { control, handleSubmit } = useForm<GameConfig>({
 			defaultValues: {
 				count: 2,
 				sort: 1,
 				values: 'A',
 			},
 		});
-		const onSubmit: SubmitHandler<StartGameParams> = (params) => {
-			console.log(params);
-			reset();
+		const onSubmit: SubmitHandler<GameConfig> = (params) => {
+			setGameConfigEvent(params);
+			setTimeout(() => push('/level'), 300);
 		};
 		return (
 			<StyledWrapper className={className}>

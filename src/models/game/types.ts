@@ -1,10 +1,17 @@
-export interface StartGameParams {
+export type ValuesType = 'A' | number;
+export type SortType = 1 | -1;
+
+export interface GameConfig {
 	readonly count: number;
-	readonly sort: 1 | -1;
-	readonly values: number | string;
+	readonly sort: SortType;
+	readonly values: ValuesType;
 }
 
 export interface ItemModel {
-	readonly number: number;
+	readonly value: number | string;
 	readonly image: string;
+}
+
+export interface Slot {
+	readonly item: ItemModel | null;
 }

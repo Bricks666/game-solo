@@ -1,10 +1,12 @@
 import * as React from 'react';
 import type { AppProps } from 'next/app';
+import { withEffector } from 'nextjs-effector';
 import { Global, css } from '@emotion/react';
 import { globalStyles } from '@/styles';
 import { useWidth } from '@/hooks';
+import '@/models/init';
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
 	const width = useWidth();
 
 	const styles = React.useMemo(() => {
@@ -22,3 +24,5 @@ export default function App({ Component, pageProps }: AppProps) {
 		</>
 	);
 }
+
+export default withEffector(App);
