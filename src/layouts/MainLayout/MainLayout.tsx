@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CommonProps } from '@/interfaces/common';
-import { StyledWrapper } from './styles';
+import { Container } from '@/components/Container';
 
 export interface MainLayoutProps extends CommonProps {}
 
-export const MainLayout: React.FC<MainLayoutProps> = React.memo(
-	function MainLayout(props) {
-		const { className } = props;
-		return <StyledWrapper className={className}>{null}</StyledWrapper>;
-	}
-);
+export const MainLayout: React.FC<React.PropsWithChildren<MainLayoutProps>> = (
+	props
+) => {
+	const { className, children } = props;
+	return <Container className={className}>{children}</Container>;
+};
