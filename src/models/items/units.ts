@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import * as React from 'react';
 import { combine, createDomain } from 'effector';
 import { arrayIsEqual, extractId, getValue } from '@/utils';

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { sample, Event } from 'effector';
 import { getNumberBetween, getValue } from '@/utils';
 import { startLevelGame, $gameConfig } from '../config';
